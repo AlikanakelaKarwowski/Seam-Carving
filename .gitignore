@@ -30,4 +30,8 @@
 *.exe
 *.out
 *.app
+
+#Misc
 seam
+Seam-Carving.rar
+test.cpp
