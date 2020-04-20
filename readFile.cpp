@@ -3,8 +3,9 @@
 void PGM::setCriticalValues()
 {
     std::stringstream ss;
-    //ignore first 2 lines or file.
-    pgm.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    std::getline(pgm, pValue);
+    //ignore second line for comments
     pgm.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     //get the x and y values from the third line
@@ -36,6 +37,9 @@ void PGM::readPGM()
 
 void PGM::printVector()
 {
+    std::cout << pValue << std::endl;
+    std::cout << xValue << " " << yValue<< std::endl;
+    std::cout << grayscaleValue << std::endl;
     for(auto i : values)
     {
         for(auto j : i)
