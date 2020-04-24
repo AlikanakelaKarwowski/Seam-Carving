@@ -5,8 +5,8 @@ void PGM::setCriticalValues()
     std::stringstream ss;
 
     std::getline(pgm, pValue);
-    //ignore second line for comments
-    pgm.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    if(line[0] == '#')
+        pgm.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     //get the x and y values from the third line
     std::getline(pgm,line);
@@ -21,17 +21,26 @@ void PGM::setCriticalValues()
 
 void PGM::readPGM()
 {
+    std::vector<int> gsLine;
     while(std::getline(pgm, line))
     {
-        std::stringstream ss;
-        std::vector<int> gsLine;
-        int tmp = 0;
-        ss << line;
+        int tmp;
+        if(line[0] !='#')
+        {
+            std::stringstream ss(line);
+            while (ss >> tmp)
+            {
+                gsLine.push_back(tmp);
+                ++xCounter;
+                if(xCounter == xValue)
+                {
+                    xCounter = 0;
+                    values.push_back(gsLine);
+                    gsLine.clear();
+                }
+            }
 
-        while (ss >> tmp)
-            gsLine.push_back(tmp);
-
-        values.push_back(gsLine);
+        }
     }
 }
 

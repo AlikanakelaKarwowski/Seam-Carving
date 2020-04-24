@@ -19,7 +19,7 @@ public:
     int getG() {return grayscaleValue;};
     void printVector();
 private:
-    int xValue = 0, yValue = 0, grayscaleValue = 0;
+    int xValue = 0, yValue = 0, grayscaleValue = 0, xCounter = 0;
     std::string line, pValue;
     std::fstream pgm;
     std::vector<std::vector<int>> values;
