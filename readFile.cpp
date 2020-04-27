@@ -212,7 +212,7 @@ void PGM::write()
     std::ofstream carved(file2);
     carved << pValue << "\n";
     carved << "#Stupid comment" << "\n";
-    carved << xValue-vertCount << " " << yValue-horCount<< "\n";
+    carved << xValue << " " << yValue-horCount<< "\n";
     carved << grayscaleValue << "\n";
     for(auto i : values)
     {
