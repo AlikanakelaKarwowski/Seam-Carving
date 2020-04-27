@@ -174,32 +174,33 @@ void PGM::removeVSeams()
 
         energyMatrix();
         vCumEnergy();
+
         auto min_ele = std::min_element(vMatrix[row].begin(), vMatrix[row].end());
         auto iter = std::distance(vMatrix[row].begin(), min_ele);
         values[row].erase(values[row].begin() + iter);
         --row;
         for(; row !=-1 ; --row)
         {
+            
             min_ele = vMatrix[row].begin() + iter;
 
             if(min_ele != vMatrix[row].begin() || min_ele != vMatrix[row].end())
             {
                 min_ele = std::min_element(min_ele - 1, min_ele + 1);
                 iter = std::distance(vMatrix[row].begin(), min_ele);
-                values[row].erase(values[row].begin()+iter);
+
             }
             else if(min_ele == vMatrix[row].begin())
             {
                 min_ele = std::min_element(min_ele, min_ele + 1);
                 iter = std::distance(vMatrix[row].begin(), min_ele);
-                values[row].erase(values[row].begin()+iter);
             }
             else if(min_ele == vMatrix[row].end())
             {
                 min_ele = std::min_element(min_ele - 1, min_ele);
                 iter = std::distance(vMatrix[row].begin(), min_ele);
-                values[row].erase(values[row].begin()+iter);
             }
+            values[row].erase(values[row].begin()+iter);
         }
     }
 }
