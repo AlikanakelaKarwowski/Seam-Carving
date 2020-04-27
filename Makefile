@@ -1,14 +1,14 @@
 .PHONY: all
-all : seam
+all : main
 
-seam : seam.o readFile.o
-	g++ -std=c++17 seam.o readFile.o -o seam
+main : main.o seamCarve.o
+	g++ -std=c++17 main.o seamCarve.o -o carve
 
-seam.o : seam.cpp readFile.hpp
-	g++ -std=c++17 -c seam.cpp
+main.o : main.cpp seamCarve.hpp
+	g++ -std=c++17 -c main.cpp
 
-readFile.o : readFile.cpp
-	g++ -std=c++17 -c readFile.cpp
+seamCarve.o : seamCarve.cpp
+	g++ -std=c++17 -c seamCarve.cpp
 .PHONY: clean
 clean :
-	@rm -f seam *.o
+	@rm -f carve *.o
