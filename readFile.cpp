@@ -5,6 +5,7 @@ PGM::PGM(std::string file, int vert, int hor)
     pgm.open(file);
     vertCount = vert;
     horCount = hor;
+    filename = file;
 }
 
 void PGM::setCriticalValues()
@@ -168,6 +169,7 @@ void PGM::removeVSeams()
 {
     for (int num = 0; num < vertCount; ++num)
     {
+        --xValue;
         int row = yValue-1;
 
         energyMatrix();
@@ -176,8 +178,7 @@ void PGM::removeVSeams()
         auto iter = std::distance(vMatrix[row].begin(), min_ele);
         values[row].erase(values[row].begin() + iter);
         --row;
-        
-        for(; row !=1 ; --row)
+        for(; row !=-1 ; --row)
         {
             min_ele = vMatrix[row].begin() + iter;
 
@@ -200,6 +201,26 @@ void PGM::removeVSeams()
                 values[row].erase(values[row].begin()+iter);
             }
         }
-        std::cout << "Finished 1 iteration" <<std::endl;
     }
+}
+
+void PGM::write()
+{
+    auto name = filename.size()-4;
+    std::string file2 = filename.substr(0,name);
+    file2 = file2 + "_carved.pgm";
+    std::ofstream carved(file2);
+    carved << pValue << "\n";
+    carved << "#Stupid comment" << "\n";
+    carved << xValue-vertCount << " " << yValue-horCount<< "\n";
+    carved << grayscaleValue << "\n";
+    for(auto i : values)
+    {
+        for(auto j : i)
+        {
+            carved << j << "\t";
+        }
+    carved << "\n";
+    }
+    carved.close();
 }

@@ -20,10 +20,11 @@ public:
     void vCumEnergy();
     void removeVSeams();
     void carveVSeams(int minValue, int yValue);
+    void write();
 
 private:
     int xValue = 0, yValue = 0, grayscaleValue = 0, xCounter = 0, vertCount = 0, horCount = 0;
-    std::string line, pValue;
+    std::string line, pValue, filename;
     std::fstream pgm;
     std::vector<std::vector<int>> values, eMatrix, cMatrix, vMatrix, hMatrix;
 

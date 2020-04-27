@@ -17,9 +17,8 @@ int main(int argc, char *argv[])
         PGM image(filename, iVert, iHor);
         image.setCriticalValues();
         image.readPGM();
-        image.printVector(0);
         image.removeVSeams();
-        image.printVector(0);
+        image.write();
     }
 
     return 0;
