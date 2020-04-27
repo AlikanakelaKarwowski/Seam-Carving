@@ -7,17 +7,19 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc != 2)
-        std::cout <<"Wrong format! Should be \"./seam file.pgm\"" <<std::endl;
+    if (argc != 4)
+        std::cout <<"Wrong format! Should be \"./seam file.pgm vSeams hSeams\"" <<std::endl;
     else
     {
 
-        std::string filename = argv[1];
-        PGM image(filename);
+        std::string filename = argv[1], vert = argv[2], hor = argv[3];
+        int iVert = std::stoi(vert), iHor = std::stoi(hor);
+        PGM image(filename, iVert, iHor);
         image.setCriticalValues();
         image.readPGM();
-        image.printVector();
-
+        image.printVector(0);
+        image.removeVSeams();
+        image.printVector(0);
     }
 
     return 0;

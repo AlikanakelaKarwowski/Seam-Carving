@@ -6,23 +6,28 @@
 #include <fstream>
 #include <sstream>
 #include <limits>
+#include <algorithm>
+#include <iterator>
 
 class PGM
 {
 public:
-    PGM(std::string file) {pgm.open(file);};
-
+    PGM(std::string file, int vert, int hor);
+    void printVector(int i);
     void setCriticalValues();
     void readPGM();
-    int getX() {return xValue;};
-    int getY() {return yValue;};
-    int getG() {return grayscaleValue;};
-    void printVector();
+    void energyMatrix();
+    void vCumEnergy();
+    void removeVSeams();
+    void carveVSeams(int minValue, int yValue);
+
 private:
-    int xValue = 0, yValue = 0, grayscaleValue = 0, xCounter = 0;
+    int xValue = 0, yValue = 0, grayscaleValue = 0, xCounter = 0, vertCount = 0, horCount = 0;
     std::string line, pValue;
     std::fstream pgm;
-    std::vector<std::vector<int>> values;
+    std::vector<std::vector<int>> values, eMatrix, cMatrix, vMatrix, hMatrix;
+
+    void transpose();
 };
 
 #endif
