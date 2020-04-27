@@ -5,9 +5,6 @@
 
 #include "seamCarve.hpp"
 
-
-
-
 int main(int argc, char** argv) {
     if (argc != 4) {
         std::cout << "Invalid number of arguments. \nShould be ./a.out file.pgm vertSeams horizSeams" << std::endl;
