@@ -1,3 +1,9 @@
+// Alex Karwowski
+// Algorithms
+// Project 3
+// 4/27/20
+
+
 #include "seamCarve.hpp"
 
 void getEnergy(int** grayScaleValue, int** eArray, int rows, int col) {

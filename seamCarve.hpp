@@ -1,3 +1,8 @@
+// Alex Karwowski
+// Algorithms
+// Project 3
+// 4/27/20
+
 #ifndef INCLUDE_READFILE_HPP
 #define INCLUDE_READFILE_HPP
 
